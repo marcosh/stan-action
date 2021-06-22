@@ -3,10 +3,14 @@ name: 'haskell-stan'
 author: "Kowainik — Veronika Romashkina, Dmitrii Kovanikov"
 description: 'Haskell Static Analyser'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
+  ghc-version:
+    description: 'GHC version'
+    required: false
+    default: '8.8.3'
+  stan-version:
+    description: 'Stan version'
+    required: false
+    default: '0.0.1.0'
 outputs:
   stanPath:
     description: 'Path to Stan inside Docker container'
@@ -14,7 +18,8 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }}
+    - ${{ inputs.ghc-version }}
+    - ${{ inputs.stan-version }}
 # post-entrypoint: 'copy_release.sh'
 
 branding:
